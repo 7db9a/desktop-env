@@ -10,6 +10,8 @@ LARBS guide `Super + F1`. Shows basic info and key-bindings to as a reminder.
 
 Toggle windows `Super + j`.
 
+Toggle status bar `Super + b`.
+
 **vi mode shell**
 
 Enter normal mode with `Esc`, then do move around as if in `vi`.
