@@ -53,9 +53,27 @@ Used to manage monitors.
 
 * xorg-xrandr (pacman)
 
+* xbindkeys (nix)
 
-#### Scripts additions after setup.
+### Script additions after setup.
 
 `texm` is a script to toggle external monitor.
 
+`work/script.sh` is going to automate this setup.
+
 * ~/.local/bin/texm (voidrice working tree)
+
+## How To
+
+### Add Custom Manpage (i-man)
+
+We call individualized man pages like others.
+
+* Add man page file to `~/.local/i-man/man1/`. `man1` means it's for  a general program. See files in the directory as an example for syntax.
+
+* Then symlink the file to man's path at`/usr/local/man/man1`.
+
+* To the git working tree, add the new file found in `~/.local/i-man/man1/`.
+
+
+https:://www.cyberciti.biz/faq/linux-unix-creating-a-manpage
