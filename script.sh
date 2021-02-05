@@ -2,6 +2,9 @@
 
 # DON"T EXCUTE THIS SCRIPT.
 
+# Follow README's install and setup instructions: archfi and LARBS.
+# Below is only after a minimum desktop environment has been created.
+
 # Install Nix
 # nixos.org/downloads.html#nix-quick-install
 curl -L https://nixos.org/nix/install | sh
