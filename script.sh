@@ -4,7 +4,7 @@
 
 # Install Nix
 # nixos.org/downloads.html#nix-quick-install
-curl -L https://nixos.org/nix/install/sh
+curl -L https://nixos.org/nix/install | sh
 # Otherwise nix-env and others will appear not to be on the system.
 source $HOME/.nix-profile/etc/profile.d/nix.sh
 
