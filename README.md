@@ -1,8 +1,8 @@
 # Desktop Environment
 
+
 The archlinux install was done using archfi. Configs and scripts are versioned from $HOME in the Voidrice working tree. This README is versioned in work/desktop-env's working tree.
 
-Excuse some of the yodaisms: easier to parse with my eyes.
 
 **Goals**
 
@@ -14,6 +14,7 @@ Nix's package manager, add as much of new software with.
 
 - [ ] Move off of Github.
 
+I forked LARBS and Voidrice so that I could keep all the computers on the same page.
 
 ## Useful LARBS and Voidrice info
 
@@ -35,7 +36,7 @@ Toggle windows `Super + j`.
 
 Toggle status bar `Super + b`.
 
-Increase/decrease size of window `Super + l`/`Super + h	`.
+Increase/decrease size of window `Super + l`/`Super + h `.
 
 Toggle color in zathura (pdf reader) `i`.
 
@@ -75,5 +76,70 @@ We call individualized man pages like others.
 
 * To the git working tree, add the new file found in `~/.local/i-man/man1/`.
 
+## Arch Install and Setup
 
-https:://www.cyberciti.biz/faq/linux-unix-creating-a-manpage
+### Install Script - MatMoul
+
+Run script per instructions from:
+[My forked archfi installer](https://github.com/7db9a/personal_archfi)
+
+
+Check if you have EFI or UEFI
+
+`ls /sys/firmware/efi`
+
+Menus guide:
+
+* Language: English (By MatMoul)
+* Set Keyboard Layout: us
+* Disk Partitions: Auto Partitions (gpt, efi)
+   * Only if your have efi (see below to check)
+   * Select the hard drive - probably /dev/sda.
+   * After completing ("yes" and "yes"), go back to Main Menu.
+* Select Partitions and Install
+    * devices 'Okeyed' in order pre=selected. Home should pre=select to None.
+* Format Device
+    * boot should be fat32 (EFI), unless you don't have EFI.
+    * swap - just okay it.
+    * root - I do btrfs (MatMoul video selected that and my research supports that decision)
+* Mount Install and Config
+* Install Arch Linuxpacstrap
+  * Kernel: linux
+  * Linux firmware: pre-selected packages
+
+* Config Arch Linux
+* Set Computer Name (this is root and not your other user that will be setup later)
+* Keyboard layout: us
+* Set Locale: en_US
+* Set Time: US > Eastern > UTC
+* Generate fstab: UUID genfstab -U
+* Bootlaoder: grub > "Install pacstrap grup (ef ibootmgr), grub-mkconfig" > "efi bootmgr is required for efi computer": ***select if true.***
+* Install bootloader grub-install > Select drive > EFI (if true)
+Places back in Grub Install Menu. Go back to levels to  Arch Install Menu.
+* Extras
+   * Deselect nano and vim (spacebar) and keep dhcpd
+Places back in Grub Install Menu. Go back 2 levels to Install Menu.
+* Config Arch Linux > Unmount
+Places into Format and Mount menu. Go back to Main Menu.
+* Reboot
+[Watch video: Arch Linux installer (archfi) : Base and Grub Install Script - EFI,UEFI](https://www.youtube.com/watch?v=FMSeLZkZq6A&list=PLytHgIKLV1caHlCrcTSkm5OF2WSVI1_Sq&index=2&ab_channel=MatMoul)
+
+### Desktop setup script - Luke Smith
+
+Update system and refresh Arch keyrings (package developer signatures):
+
+`pacman -Syu && pacman-key --refresh-keys`
+
+LARBS may be broken so use older larbs.sh version I forked and modified.
+
+```
+curl -LO raw.githubusercontent.com/7db9a/personal_LARBS/master/larbs.sh
+sh larbs.sh
+```
+
+## Other info
+Downgrade a package and downgrade packages to a specific date:
+
+[https://wiki.archlinux.org/index.php/Arch\_Linux\_Archive#How\_to\_restore\_all\_packages\_to\_a\_specific\_date](https://wiki.archlinux.org/index.php/Arch_Linux_Archive#How_to_restore_all_packages_to_a_specific_date)
+
+https://www.rdeeson.com/weblog/176/how-to-rollback-a-system-update-on-arch-linux
