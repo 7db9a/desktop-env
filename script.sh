@@ -11,5 +11,8 @@ source $HOME/.nix-profile/etc/profile.d/nix.sh
 # Install xbindkeys
 nix-env iA nixpkgs.xbindkeys
 
+# Install xrandr for display management (replace with nix pkg?)
+pacman -S xorg-xrandr
+
 # Symlink individualized man page to where man can find it.
 sudo ln -s $HOME/:w.local/i-man/man1/xbindkeys.1 /usr/local/share/man/man1/i-xbindkeys.1
