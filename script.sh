@@ -5,6 +5,11 @@
 # Follow README's install and setup instructions: archfi and LARBS.
 # Below is only after a minimum desktop environment has been created.
 
+# Submodule of fzf. It'll override LARBS fzf settings, if I'm not mistaken.
+# If not installed Ctr + R and Ctr + T won't work.
+git submodule update -- .fzf/install
+./fzf/install
+
 # Install Nix
 # nixos.org/downloads.html#nix-quick-install
 curl -L https://nixos.org/nix/install | sh
@@ -14,8 +19,40 @@ source $HOME/.nix-profile/etc/profile.d/nix.sh
 # Install xbindkeys
 nix-env iA nixpkgs.xbindkeys
 
+# Specificully used to convert markdown to html (an nmgr dependency).
+nix-env -iA nixpkgs.pandoc
+
+# Used as a nmgr dependency
+nix-env -iA nixpkgs.ripgrep
+
+# Update arch system.
+pacman -Syu
+
 # Install xrandr for display management (replace with nix pkg?)
 pacman -S xorg-xrandr
+
+# Has xargs, which is needed for nmgr.
+pacman -S findutils
+
+# Firewall
+pacman -S ufw
+# May have to reboot.
+ufw enable
+
+# Allows ratelimited ssh (something like 6 per 30 seconds).
+ufw limit ssh
+
+# Install openssh
+
+pacman -S openssh
+
+# To check status 'systemctl status sshd'
+systemctl start sshd
+
+## See Openssh note on creating password and passphrase free ssh login.
+
+# Install wget
+pacman -S wget
 
 # Symlink individualized man page to where man can find it.
 sudo ln -s $HOME/:w.local/i-man/man1/xbindkeys.1 /usr/local/share/man/man1/i-xbindkeys.1
