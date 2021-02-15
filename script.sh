@@ -28,6 +28,22 @@ nix-env -iA nixpkgs.ripgrep
 # Update arch system.
 pacman -Syu
 
+# Install ntpd to keep clock in sync.
+pacman -Syu ntp
+
+# Enable it at boot and clock sync at boot.
+systemctl enable ntpd.service
+
+# May require a computer reboot for clock to sync, but launch it right away.
+systemctl start ntpd.service
+
+# Install docker (kind of complicated with non-nixos nix).
+pacman -Syu docker
+
+systemctl enable docker.service
+
+systemctl start docker.service
+
 # Install xrandr for display management (replace with nix pkg?)
 pacman -S xorg-xrandr
 
