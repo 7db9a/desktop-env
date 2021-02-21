@@ -62,13 +62,26 @@ ufw limit ssh
 
 pacman -S openssh
 
-# To check status 'systemctl status sshd'
-systemctl start sshd
+# Start sshd on boot also start right away.
+systemctl enable sshd.service
+systemctl start sshd.service
 
 ## See Openssh note on creating password and passphrase free ssh login.
 
 # Install wget
 pacman -S wget
+
+# Install cargo (nix's cargo can't compile hal crate). I chose default install option when prompted
+
+curl https://sh.rustup.rs -sSf | sh
+
+# Install bitcoin cli tool, hal.
+
+cargo install hal
+
+# Install shunit2 for bash unit tests.
+
+nix-env -iA pxkgs.shunit2
 
 # Symlink individualized man page to where man can find it.
 sudo ln -s $HOME/:w.local/i-man/man1/xbindkeys.1 /usr/local/share/man/man1/i-xbindkeys.1
