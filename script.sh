@@ -81,7 +81,7 @@ cargo install hal
 
 # Install shunit2 for bash unit tests.
 
-nix-env -iA pxkgs.shunit2
+nix-env -iA nixpkgs.shunit2
 
 # Symlink individualized man page to where man can find it.
 sudo ln -s $HOME/:w.local/i-man/man1/xbindkeys.1 /usr/local/share/man/man1/i-xbindkeys.1
