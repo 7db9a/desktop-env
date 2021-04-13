@@ -44,6 +44,9 @@ systemctl enable docker.service
 
 systemctl start docker.service
 
+# nix's docker-compose works.
+nix-env -iA nixpkgs.docker-compose
+
 # Install xrandr for display management (replace with nix pkg?)
 pacman -S xorg-xrandr
 
